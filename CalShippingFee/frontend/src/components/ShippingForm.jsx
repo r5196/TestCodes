@@ -15,12 +15,14 @@ const ShippingForm = ({ setTotalFee }) => {
     ]);
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-    console.log(parcels)
-    const data = parcelService.create(parcels)
+    // console.log(parcels)
+    const data = await parcelService.create({
+      parcels: parcels
+    })
     console.log(data)
-    setTotalFee(data)
+    setTotalFee(data.totalShippingFee)
   }
 
   const handleParcelChange = (index, parcelData) => {
