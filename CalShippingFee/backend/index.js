@@ -4,6 +4,7 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static('dist'))
 
 app.post('/api/calShippingFees', (request, response) => {
   const parcels = request.body.parcels
@@ -33,7 +34,7 @@ const calculateVolumetricWeight = (length, width, height) => {
   return (length * width * height) / 5000;
 }
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

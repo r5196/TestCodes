@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/calShippingFees'
+const baseUrl = '/api/calShippingFees'
 
 const create = async (newParcels) => {
   // console.log("newParcels", newParcels)
