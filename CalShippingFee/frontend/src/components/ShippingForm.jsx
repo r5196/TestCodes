@@ -1,21 +1,26 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react"
 import ParcelInput from "./ParcelInput"
+import parcelService from "../services/parcels"
 
-const ShippingForm = () => {
+const ShippingForm = ({ setTotalFee }) => {
   const [parcels, setParcels] = useState([
-    { length: '', width: '', height: '', weight: '', temperatureCondition: '' },
+    { length: '', width: '', height: '', weight: '', temperatureCondition: 'Ambient' },
   ]);
 
   const addParcel = () => {
     setParcels([
       ...parcels,
-      { length: '', width: '', height: '', weight: '', temperatureCondition: '' },
+      { length: '', width: '', height: '', weight: '', temperatureCondition: 'Ambient' },
     ]);
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
     console.log(parcels)
+    const data = parcelService.create(parcels)
+    console.log(data)
+    setTotalFee(data)
   }
 
   const handleParcelChange = (index, parcelData) => {
